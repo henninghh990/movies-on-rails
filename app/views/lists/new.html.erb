@@ -1,0 +1,14 @@
+<%= link_to("<< Back to Lists", {:action => 'index'}, :class => 'back-link') %>
+
+<div clsas="lists new">
+	<h2>Create List</h2>
+
+	<%= form_for(:list, :url => {:action => 'create'}) do |f| %>
+
+		<%= render(:partial => "form", :locals => {:f => f}) %>
+		<div class="form-buttons">
+			<%= submit_tag("Create List") %>
+		</div>
+
+	<% end %>
+</div>

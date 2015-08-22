@@ -1,0 +1,10 @@
+<%= link_to("<< Back to Lists", {:action => 'index'}, :class => 'back-link') %>
+
+<div class="movies search">
+	<h2>Seach movies</h2>
+
+	<%= form_tag(:action => 'search') do %>
+  		<%= text_field_tag(:q) %>
+  		<%= submit_tag("Search") %>
+	<% end %>
+</div>

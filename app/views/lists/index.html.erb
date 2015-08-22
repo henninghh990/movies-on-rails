@@ -1,0 +1,27 @@
+
+<div class="lists index">
+  <h2>Lists</h2>
+
+  <%= link_to("Add New List", {:action => 'new'}, :class => 'btn btn-default pull-right', :style => 'margin-bottom:10px') %>
+
+  <table class="table table-hover" summary="List list">
+    <tr class="header">
+      <th>ID</th>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Actions</th>
+    </tr>
+    <% @lists.each do |list| %>
+    <tr>
+      <td><%= list.id %></td>
+      <td class="center"><%= list.name %></td>
+      <td class="center"><%= list.category %></td>
+      <td class="actions">
+        <%= link_to('<span class="glyphicon glyphicon-zoom-in"></span>'.html_safe, {:action => 'show', :id => list.id}, :class => 'btn btn-default') %>
+        <%= link_to('<span class="glyphicon glyphicon-pencil"></span>'.html_safe, {:action => 'edit', :id => list.id}, :class => 'btn btn-default') %>
+        <%= link_to('<span class="glyphicon glyphicon-remove-circle"></span>'.html_safe, {:action => 'delete', :id => list.id}, :class => 'btn btn-default') %>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>

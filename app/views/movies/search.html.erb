@@ -1,0 +1,106 @@
+<% if !flash[:notice].blank? %>
+	<div class="notice">
+		<%= flash[:notice] %>
+	</div>
+<% end %>
+
+<div class="movies search">
+  <h2>Movie search results</h2>
+
+  <%= link_to("New search", {:action => 'index'}, :class => 'btn btn-default') %>
+
+  <div class="row" summary="List list" style='margin-top:10px;'>
+    <% @movies.each do |movie| %>
+    <% plakat = movie.poster('w185') %>
+      <% if plakat.blank? %>
+          <% plakat = '/assets/noposter.png' %>
+      <% end %>
+      <div class="col-md-3"  style='height:255px;width:170px;margin:10px'>
+        <div class="box overlay red">
+          <img src="<%= plakat %>" width="170px">
+          <a href='#' type="button" class='link' data-toggle="modal" data-target="#exampleModal" data-film="<%= movie.title %>" data-bilde="<%= plakat %>" data-id="<%= movie.id %>" data-rating="<%= movie.vote_average %>" data-release="<%= movie.release_date %>"><img src="/assets/plus.png"></a>
+
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">sds</h4>
+            </div>
+            <div class="modal-body">
+                <div class='row'>
+                  <div class='col-md-6'>
+                    <img src='nofind' class='picture'>
+                  </div>
+                  <div class='col-md-6 text-left'>
+                    <div class="form-group">
+                <label for="title">Title</label>
+                <p class='title'></p>
+             </div>
+             <div class="form-group">
+                <label for="release">Release date</label>
+                <p class='release'></p>
+             </div>
+             <div class="form-group">
+                <label for="rating">Rating</label>
+                <p class='rating'></p>
+             </div>
+    
+             
+                  </div>
+
+                </div>
+                <hr>
+                <h4>Choose a list</h4>
+                <table class="table table-hover" summary="List list">
+                  <tr class="header">
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                  </tr>
+                  <% @lists.each do |list| %>
+                  <tr>
+                    <td><%= list.id %></td>
+                    <td class="center"><%= list.name %></td>
+                    <td class="center"><%= list.category %></td>
+                  </tr>
+                  <% end %>
+                </table>
+            </div>
+            <div class="modal-footer">
+              <%= form_for(:movies, :url => {:action => 'create'}) do |f| %>
+              <%= hidden_field_tag("id", "value", :class =>'hidden_id') %>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <%= submit_tag("Add movie", :class => 'btn btn-default') %>
+
+              <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+$(function(){
+    $('#exampleModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var film = button.data('film');
+        var bilde = button.data('bilde');
+        var release = button.data('release');
+        var rating = button.data('rating');
+        var id = button.data('id');
+        var modal = $(this);
+        modal.find('.modal-title').text('Add movie: ' + film);
+        modal.find('.title').text(film);
+        modal.find('.release').text(release);
+        modal.find('.rating').text(rating);
+        modal.find('.picture').attr("src", bilde);
+        modal.find('.hidden_id').attr("value", id);
+    });
+});
+</script>
