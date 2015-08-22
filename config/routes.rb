@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  root 'lists#index'
+  root 'movie_lists#index'
   match ':controller(/:action(/:id))', :via => [:get, :post]
 
 
