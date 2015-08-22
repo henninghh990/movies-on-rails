@@ -1,6 +1,7 @@
 # movies-on-rails
 
 This is a site where users can make their own Movie- or TV-show lists.
+This project is currently under construction, and far from finished.
 
 ## How to install?
 1. Copy the content of the site to a directory you desire.
