@@ -9,7 +9,7 @@ class ListsController < ApplicationController
   end
 
   def show
-    @list = current_user.List.find(params[:id])
+    @list = List.find(params[:id])
   end
 
   def new

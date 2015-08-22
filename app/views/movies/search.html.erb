@@ -63,23 +63,29 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Category</th>
+                    <th>Choose</th>
                   </tr>
-                  <% @lists.each do |list| %>
-                  <tr>
-                    <td><%= list.id %></td>
-                    <td class="center"><%= list.name %></td>
-                    <td class="center"><%= list.category %></td>
-                  </tr>
+                  <%= form_tag(action: 'create', method: 'post') do %>
+                    <%= hidden_field_tag("id", "value", :class =>'hidden_id') %>
+                        <% @lists.each do |list| %>
+                          <tr>
+                            <td><%= list.id %></td>
+                            <td><%= list.name %></td>
+                            <td><%= list.category %></td>
+                            <td><%= check_box_tag 'lists[]', list.id %></td>
+                          </tr>
+                        <% end %>
+                      </table>
+                      
+                    </div>
+                    <div class="modal-footer">
+                      <%= submit_tag("Add movie", :class => 'btn btn-default') %>
                   <% end %>
-                </table>
-            </div>
-            <div class="modal-footer">
-              <%= form_for(:movies, :url => {:action => 'create'}) do |f| %>
-              <%= hidden_field_tag("id", "value", :class =>'hidden_id') %>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <%= submit_tag("Add movie", :class => 'btn btn-default') %>
+              
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    
 
-              <% end %>
+                  
             </div>
         </div>
     </div>

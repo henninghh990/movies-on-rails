@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150820202141) do
+ActiveRecord::Schema.define(version: 20150822162220) do
 
   create_table "lists", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 20150820202141) do
     t.date     "release_date"
     t.string   "tmdb_id",           limit: 255
     t.string   "imdb_id",           limit: 255
-    t.string   "overview",          limit: 255
+    t.string   "overview",          limit: 1000
     t.string   "original_language", limit: 255
     t.string   "poster_p",          limit: 255
     t.string   "tagline",           limit: 255
