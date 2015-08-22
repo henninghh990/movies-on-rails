@@ -14,9 +14,9 @@ body {
   margin: 0;
 }
 .shadow{
-  -webkit-box-shadow: 9px 10px 53px 16px rgba(0,0,0,1);
--moz-box-shadow: 9px 10px 53px 16px rgba(0,0,0,1);
-box-shadow: 9px 10px 53px 16px rgba(0,0,0,1);
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 }
 .rating{
   background-image:url('/assets/star.png');
