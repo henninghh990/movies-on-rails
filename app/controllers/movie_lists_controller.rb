@@ -9,4 +9,10 @@ class MovieListsController < ApplicationController
 		
 
 	end
+
+	def destroy
+	    movie_list = MovieList.find(params[:id]).destroy
+	    flash[:notice] = "Movie deleted successfully."
+	    redirect_to(:controller => 'lists', :action => 'index')
+  end
 end

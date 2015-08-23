@@ -27,4 +27,25 @@
 			<td><%= @list.updated_at %></td>
 		</tr>
 	</table>
+	<table class='table table-hover'>
+		<tr><th>ID</th>
+		<th>Title</th>
+		<th>TMDB ID</th>
+		<th>Comment</th>
+		<th>Rating</th>
+		<th>Action</th></tr>
+		<% @movies.each do |movieL| %>
+			<tr>
+				<td><%= movieL.id %></td>
+				<td><%= movieL.movie.title %></td>
+				<td><%= movieL.movie.tmdb_id %></td>
+				<td><%= movieL.comment %></td>
+				<td><%= movieL.rating %></td>
+				<td>
+			        <%= link_to('<span class="glyphicon glyphicon-pencil"></span>'.html_safe, {:controller => 'movie_lists', :action => 'edit', :id => movieL.id}, :class => 'btn btn-default') %>
+			        <%= link_to('<span class="glyphicon glyphicon-remove-circle"></span>'.html_safe, {:controller => 'movie_lists', :action => 'destroy', :id => movieL.id}, :class => 'btn btn-default') %>
+				</td>
+			</tr>
+		<% end %>
+	</table>
 </div>
