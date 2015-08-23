@@ -4,9 +4,7 @@ class MovieListsController < ApplicationController
 
 	def index
 
-		if !user_signed_in?
-			render('welcome')
-		end
+		
 		if user_signed_in?
 			@all_lists = current_user.lists
 			@chosen_list = current_user.lists.first
