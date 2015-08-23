@@ -18,38 +18,55 @@ before_action :authenticate_user!
       list_ids = params[:lists].collect {|id| id.to_i} if params[:lists]
       
       @movie = TMDB::Movie.id(params[:id])
-      @film = Movie.new
-      @film.title = @movie.title
-      @film.poster = @movie.poster
-      @film.runtime = @movie.runtime
-      @film.tmdb_id = @movie.tmdb_id
-      @film.imdb_id = @movie.imdb_id
-      @film.overview = @movie.overview
-      @film.release_date = @movie.release_date
-      @film.original_language = @movie.original_language
-      @film.tagline = @movie.tagline
-      @film.vote_avarage = @movie.vote_average
+      does_exsist = Movie.where(:id => @movie.id).count
 
-      if @film.save
-        if list_ids
-          list_ids.each do |id|
-            list = List.find(id)
-            new_movielist = MovieList.new
-            list.movie_lists << new_movielist
-            @film.movie_lists << new_movielist
-            new_movielist.save
+      if does_exsist == 0
+        @film = Movie.new
+        @film.id = @movie.id
+        @film.title = @movie.title
+        @film.poster = @movie.poster_path
+        @film.runtime = @movie.runtime
+        @film.imdb_id = @movie.imdb_id
+        @film.overview = @movie.overview
+        @film.release_date = @movie.release_date
+        @film.original_language = @movie.original_language
+        @film.tagline = @movie.tagline
+        @film.vote_avarage = @movie.vote_average
+
+        if @film.save
+          if list_ids
+            list_ids.each do |id|
+              list = List.find(id)
+              new_movielist = MovieList.new
+              list.movie_lists << new_movielist
+              @film.movie_lists << new_movielist
+              new_movielist.save
+            end
+            flash[:notice] = "New movie saved"
+            redirect_to(:action => 'index')
+          else
+            flash[:notice] = "Could not find list"
+            redirect_to(:action => 'index')
           end
-          flash[:notice] = "New movie saved"
-          redirect_to(:action => 'index')
+          
         else
-          flash[:notice] = "Could not find list"
+          flash[:notice] = "<!@film.save>"
           redirect_to(:action => 'index')
         end
-        
       else
-        flash[:notice] = "<!@film.save>"
+        @film = Movie.find(@movie.id)
+        if list_ids
+            list_ids.each do |id|
+              list = List.find(id)
+              new_movielist = MovieList.new
+              list.movie_lists << new_movielist
+              @film.movie_lists << new_movielist
+              new_movielist.save
+        end
+        flash[:notice] = "New exsisted, but was movie saved"
         redirect_to(:action => 'index')
       end
+    end
     else
       flash[:notice] = "request post failed."
       redirect_to(:action => 'index')

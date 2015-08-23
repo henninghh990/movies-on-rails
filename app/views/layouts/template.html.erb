@@ -29,15 +29,25 @@
     </nav>
     <div class="navcontainer">
         <div class="row" >
-          <div class="col-md-6">
+          <div class="col-md-4">
           <h1 style="font-size: 50px;color:white;font-weight:300;z-index:-10">Filmania</h1>
           </div>
-          <div class="col-md-6 ">
-          <h1 class="pull-right" style="font-size: 50px;color:white;font-weight:300;">
-          <%= link_to("", {:controller => 'lists', :action => 'index'}, :class => 'menyknapp pull-left') %>
-          <%= user_signed_in? ? current_user.username : "No username" %>
-          </h1>
+          <div class="col-md-4 text-center">
+          <div class='link-menu'>
+                <%= link_to("", {:controller => 'movie_lists', :action => 'index'}, class: 'menyknapp poster pull-right') %>
+                <%= link_to("", {:controller => 'lists', :action => 'index'}, class: 'menyknapp settings pull-right') %>
+                <%= link_to("", {:controller => 'movies', :action => 'index'}, class: 'menyknapp movie-reel pull-right') %>
+                <%= link_to('Edit registration', edit_user_registration_path, class: 'menyknapp user pull-right') %>
+                
+              </div>
           </div>
+          <div class="col-md-4">
+            <h1 class="pull-right" style="font-size: 50px;color:white;font-weight:300;">
+              <%= user_signed_in? ? @username : "No username" %>
+              
+            </h1>
+          </div>
+          
         </div>
       </div>
     <div class="container well">

@@ -13,7 +13,7 @@
     <% @movies.each do |movie| %>
     <% plakat = movie.poster('w185') %>
       <% if plakat.blank? %>
-          <% plakat = '/assets/noposter.png' %>
+          <% plakat = asset_path('noposter.png') %>
       <% end %>
       <div class="col-md-3"  style='height:255px;width:170px;margin:10px'>
         <div class="box overlay red">

@@ -10,9 +10,11 @@ html {
       -ms-text-size-adjust: 100%;
 }
 body {
-
+   background-image:url(asset-path('1.jpg'));
   margin: 0;
 }
+.grow { transition: all .2s ease-in-out; }
+.grow:hover { transform: scale(1.1); }
 .shadow{
   -webkit-box-shadow: 12px 11px 62px 5px rgba(0,0,0,0.89);
 -moz-box-shadow: 12px 11px 62px 5px rgba(0,0,0,0.89);
@@ -73,6 +75,10 @@ box-shadow: 12px 11px 62px 5px rgba(0,0,0,0.89);
 .orange:after {
   background-color: orange;
 }
+.link-menu{
+  margin-top:30px;
+  display: block;
+}
 .top-container{
   top:0px;
   height:30px;
@@ -84,8 +90,19 @@ box-shadow: 12px 11px 62px 5px rgba(0,0,0,0.89);
   width:50%;
   margin:auto;
 }
-.menyknapp{
+.settings{
   background-image: url(asset-path('settings-trans.png'));
+}
+.user{
+  background-image: url(asset-path('user.png'));
+}
+.movie-reel{
+  background-image: url(asset-path('movie-reel.png'));
+}
+.poster{
+  background-image: url(asset-path('poster.png'));
+}
+.menyknapp{
   display: block;
   margin: 0 auto;
   text-indent: -9999px;

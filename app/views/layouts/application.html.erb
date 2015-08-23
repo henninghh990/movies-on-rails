@@ -23,7 +23,7 @@
 
               <% if user_signed_in? %>
                 <li><%= link_to("Sign out", destroy_user_session_path, :method => :get) %></li>
-                <li><%= link_to('Edit registration', edit_user_registration_path) %></li>
+               
               <% else %>
                 <li><%= link_to("Sign up", new_user_registration_path) %></li>
                 <li><%= link_to("Sign in", new_user_session_path) %></li>
@@ -36,15 +36,22 @@
     </nav>
     <div class="navcontainer">
         <div class="row" >
-          <div class="col-md-6">
+          <div class="col-md-4">
           <h1 style="font-size: 50px;color:white;font-weight:300;z-index:-10">Filmania</h1>
           </div>
-          <div class="col-md-6 ">
-          <h1 class="pull-right" style="font-size: 50px;color:white;font-weight:300;">
-          <a href="#" class='menyknapp pull-left' data-jq-dropdown="#jq-dropdown-1"></a>
-          <%= user_signed_in? ? @username : "No username" %>
-          </h1>
-          
+          <div class="col-md-4 text-center">
+          <div class='link-menu'>
+                <a href="#" class='menyknapp settings pull-right' data-jq-dropdown="#jq-dropdown-1"></a>
+                <%= link_to("", {:controller => 'movies', :action => 'index'}, class: 'menyknapp movie-reel pull-right') %>
+                <%= link_to('Edit registration', edit_user_registration_path, class: 'menyknapp user pull-right') %>
+                
+              </div>
+          </div>
+          <div class="col-md-4">
+            <h1 class="pull-right" style="font-size: 50px;color:white;font-weight:300;">
+              <%= user_signed_in? ? @username : "No username" %>
+              
+            </h1>
           </div>
           
         </div>
@@ -67,11 +74,12 @@
 			</div>
 		</div>
 	</div>
-  <div id="jq-dropdown-1" class="jq-dropdown jq-dropdown-tip" style="display: none; left: 379.5px; top: 0.265625px;">
+  
+  <div id="jq-dropdown-1" class="jq-dropdown jq-dropdown-tip" >
     <ul class="jq-dropdown-menu">
       
         
-     
+      
         <% @all_lists.each do |list| %>
               <li><%= link_to(list.name, "/?username=#{@username}&list=#{list.id}") %></li>
         <% end %>
