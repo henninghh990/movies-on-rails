@@ -35,7 +35,7 @@ box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
     bottom:170px;
     left:50px;
     z-index: 10;
-    opacity: 0; 
+    opacity: 0;
     -webkit-transition: opacity .3s ease-in;
 }
 .overlay:after {
@@ -85,7 +85,7 @@ box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
   margin:auto;
 }
 .menyknapp{
-  background-image: url('/assets/settings-trans.png');
+  background-image: url(asset-path('settings-trans.png'));
   display: block;
   margin: 0 auto;
   text-indent: -9999px;
@@ -1171,7 +1171,7 @@ body {
   font-size: 14px;
   line-height: 1.42857143;
   color: #333;
-  background-image:url('/assets/3.jpg');
+  background-image: url(asset-path('3.jpg'));
    background-repeat: no-repeat;
     background-attachment: fixed;
 }
@@ -4300,7 +4300,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar {
   position: relative;
-  
+
   margin-bottom: 20px;
   border: 1px solid transparent;
 }
@@ -4725,7 +4725,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 }
 .navbar-inverse {
   background-color: none;
- 
+
 }
 .navbar-inverse .navbar-brand {
   color: #9d9d9d;
