@@ -3,10 +3,27 @@ class MovieListsController < ApplicationController
 	layout "application"
 
 	def index
-		
-			@lists = current_user.lists.first
-			@movies = @lists.movie_lists
-		
+
+		if user_signed_in?
+			@all_lists = current_user.lists
+			@chosen_list = current_user.lists.first
+			@movies = @chosen_list.movie_lists
+			@username = current_user.username
+		end
+		if params[:username]
+			@user = User.find_by_username(params[:username])
+			@all_lists = @user.lists
+			@chosen_list = @user.lists.first
+			@movies = @chosen_list.movie_lists
+			@username = @user.username
+		end
+		if params[:list]
+			@chosen_list = List.find(params[:list])
+			@movies = @chosen_list.movie_lists
+			@username = @user.username
+
+		end
+
 
 	end
 

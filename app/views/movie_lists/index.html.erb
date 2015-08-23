@@ -1,19 +1,27 @@
 
 <div class="movies index">
 
+  
+  	<div class="row" summary="List list" style='margin-top:10px;'>
+      <% if @movies.blank? %>
 
-	<div class="row" summary="List list" style='margin-top:10px;'>
-    <% @movies.each do |movieL| %>
-    <% plakat = movieL.movie.poster %>
-      <% if plakat.blank? %>
-          <% plakat = '/assets/noposter.png' %>
-      <% end %>
-      <div class="col-md-3 shadow"  style='height:255px;width:170px;margin:10px;padding:0px'>
-        <div class="box overlay red">
-          <img src="<%= plakat %>" width="170px">
-
+        <div class="alert alert-info">
+          <h3>List empty.</h3>
         </div>
-      </div>
-    <% end %>
-  </div>
+      <% else %>
+        <% @movies.each do |movieL| %>
+        <% plakat = movieL.movie.poster %>
+          <% if plakat.blank? %>
+              <% plakat = asset_path(noposter.png) %>
+          <% end %>
+          <div class="col-md-3 shadow"  style='height:255px;width:170px;margin:10px;padding:0px'>
+            <div class="box overlay red">
+              <img src="<%= plakat %>" width="170px">
+
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
 </div>

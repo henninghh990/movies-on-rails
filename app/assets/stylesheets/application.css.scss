@@ -14,12 +14,12 @@ body {
   margin: 0;
 }
 .shadow{
-  -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
--moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 12px 11px 62px 5px rgba(0,0,0,0.89);
+-moz-box-shadow: 12px 11px 62px 5px rgba(0,0,0,0.89);
+box-shadow: 12px 11px 62px 5px rgba(0,0,0,0.89);
 }
 .rating{
-  background-image:url('/assets/star.png');
+  background-image:url(asset-path('star.png'));
   background-repeat: no-repeat;
   height:100px;
   padding:30px;
@@ -1161,6 +1161,16 @@ th {
      -moz-box-sizing: border-box;
           box-sizing: border-box;
 }
+.labelbox > input{ /* HIDE RADIO */
+  display:none;
+}
+.labelbox > input + img{ /* IMAGE STYLES */
+  cursor:pointer;
+  border:2px solid transparent;
+}
+.labelbox > input:checked + img{ /* (CHECKED) IMAGE STYLES */
+  border:2px solid #f00;
+}
 html {
   font-size: 10px;
 
@@ -1171,7 +1181,7 @@ body {
   font-size: 14px;
   line-height: 1.42857143;
   color: #333;
-  background-image: url(asset-path('3.jpg'));
+  
    background-repeat: no-repeat;
     background-attachment: fixed;
 }
