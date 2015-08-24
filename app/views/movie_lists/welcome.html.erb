@@ -11,7 +11,7 @@
 	  <title>Filmania |</title>
 	</head>
   <% if user_signed_in? %>
-    <body style="background-image: url(<%= asset_path( @chosen_list.background ) %>);">
+    <body style="background-image: url(<%= asset_path('1.jpg')%>);">
   <% else %>
    <body>
   <% end %>
@@ -40,10 +40,22 @@
           <h1 style="font-size: 50px;color:white;font-weight:300;z-index:-10">Filmania</h1>
           </div>
           <div class="col-md-4 text-center">
-          
+          <% if user_signed_in? %>
+           <div class='link-menu'>
+                
+                <%= link_to("", {:controller => 'lists', :action => 'index'}, class: 'menyknapp settings pull-right') %>
+                <%= link_to("", {:controller => 'movies', :action => 'index'}, class: 'menyknapp movie-reel pull-right') %>
+                <%= link_to('Edit registration', edit_user_registration_path, class: 'menyknapp user pull-right') %>
+                
+              </div>
+
+           <% end %>
           </div>
           <div class="col-md-4">
-           
+          <% if user_signed_in? %>
+            <h1 style="font-size: 50px;color:white;font-weight:300;z-index:-10"><%= @username %></h1>
+          <% end %>
+
           </div>
           
         </div>

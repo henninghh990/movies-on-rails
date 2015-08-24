@@ -6,17 +6,29 @@ class MovieListsController < ApplicationController
 
 		
 		if user_signed_in?
-			@all_lists = current_user.lists
-			@chosen_list = current_user.lists.first
-			@movies = @chosen_list.movie_lists
 			@username = current_user.username
+			@all_lists = current_user.lists
+			if @all_lists.blank?
+				flash[:notice] = "You have no lists yet."
+				redirect_to(:action => 'welcome')
+			else
+				@chosen_list = current_user.lists.first
+				@movies = @chosen_list.movie_lists
+				
+			end
 		end
 		if params[:username]
 			@user = User.find_by_username(params[:username])
-			@all_lists = @user.lists
-			@chosen_list = @user.lists.first
-			@movies = @chosen_list.movie_lists
-			@username = @user.username
+			if @user.nil?
+				flash[:notice] = "No such user."
+				redirect_to(:action => 'welcome')
+			else
+				@all_lists = @user.lists
+				@chosen_list = @user.lists.first
+				@movies = @chosen_list.movie_lists
+				@username = @user.username
+			end
+			
 		end
 		if params[:list]
 			@chosen_list = List.find(params[:list])
@@ -36,4 +48,6 @@ class MovieListsController < ApplicationController
 	    flash[:notice] = "Movie deleted successfully."
 	    redirect_to(:controller => 'lists', :action => 'index')
   end
+
+
 end

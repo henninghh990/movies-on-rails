@@ -11,7 +11,7 @@
     <title>Filmania |</title>
   </head>
   <% if user_signed_in? %>
-    <body style="background-image: url(<%= asset_path(@chosen_list.background) %>.jpg);">
+    <body style="background-image: url(<%= asset_path(@chosen_list.background + ".jpg") %>);">
   <% else %>
    <body>
   <% end %>
@@ -77,13 +77,14 @@
       <% else %>
         <% @movies.each do |movieL| %>
         <% plakat = movieL.movie.poster %>
+        <% date = Date.strptime(movieL.movie.release_date.to_s, '%Y-%m-%d').strftime('%a %b %d, %Y') %>
           <% if plakat.blank? %>
               <% plakat = asset_path(noposter.png) %>
           <% end %>
           <div class="col-md-3 shadow"  style='height:255px;width:170px;margin:10px;padding:0px'>
             <div class="grow">
               
-              <a href='#' data-toggle="modal" data-target="#exampleModal" data-film="<%= movieL.movie.title %>" data-bilde="http://image.tmdb.org/t/p/w342<%= plakat %>" data-id="<%= movieL.movie.id %>" data-rating="<%= movieL.movie.vote_avarage %>" data-backdrop="<%= movieL.movie.poster_p %>" data-release="<%= movieL.movie.release_date %>"><img src="http://image.tmdb.org/t/p/w185/<%= plakat %>" width="170px"></a>
+              <a href='#' data-toggle="modal" data-target="#exampleModal" data-film="<%= movieL.movie.title %>" data-bilde="http://image.tmdb.org/t/p/w342<%= plakat %>" data-id="<%= movieL.movie.id %>" data-rating="<%= movieL.movie.vote_avarage %>" data-runtime="<%= movieL.movie.runtime %>" data-backdrop="<%= movieL.movie.poster_p %>" data-release="<%= date %>" data-overview="<%= movieL.movie.overview %>"><img src="http://image.tmdb.org/t/p/w185/<%= plakat %>" width="170px"></a>
 
             </div>
           </div>
@@ -99,7 +100,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             
-            <div class="modal-body" style="">
+            <div class="modal-body stroke film-tekst" style="">
                 <div class='row'>
                   <div class='col-md-5 col-md-offset-1'>
                     <img src='nofind' class='picture'>
@@ -115,7 +116,15 @@
                      </div>
                      <div class="form-group">
                         <label for="rating">Rating</label>
-                        <p class='rating'></p>
+                        <p class='rating2'></p>
+                     </div> 
+                     <div class="form-group">
+                        <label for="runtime">Runtime</label>
+                        <p class='runtime'></p>
+                     </div> 
+                      <div class="form-group">
+                        <label for="overview">Overview</label>
+                        <p class='overview'></p>
                      </div> 
                     </div>
 
@@ -165,9 +174,11 @@ $(function(){
         var film = button.data('film');
         var bilde = button.data('bilde');
         var release = button.data('release');
-        var rating = button.data('rating');
+        var rating = button.data('rating2');
         var id = button.data('id');
         var backdrop = button.data('backdrop');
+        var runtime = button.data('runtime');
+        var overview = button.data('overview');
         var modal = $(this);
         modal.find('.modal-title').text(film);
         modal.find('.title').text(film);
@@ -176,6 +187,8 @@ $(function(){
         modal.find('.picture').attr("src", bilde);
         modal.find('.hidden_id').attr("value", id);
         modal.find('.modal-body').attr("style", "background-image:url(http://image.tmdb.org/t/p/w1000" + backdrop + ")");
+        modal.find('.runtime').text(runtime + " minutes");
+        modal.find('.overview').text(overview);
     });
 });
 </script>
