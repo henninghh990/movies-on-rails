@@ -8,14 +8,11 @@ class MovieListsController < ApplicationController
 		if user_signed_in?
 			@username = current_user.username
 			@all_lists = current_user.lists
-			if @all_lists.blank?
-				flash[:notice] = "You have no lists yet."
-				redirect_to(:action => 'welcome')
-			else
-				@chosen_list = current_user.lists.first
+			
+			@chosen_list = current_user.lists.first
 				@movies = @chosen_list.movie_lists
 				
-			end
+			
 		end
 		if params[:username]
 			@user = User.find_by_username(params[:username])
