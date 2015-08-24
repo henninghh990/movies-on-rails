@@ -11,7 +11,7 @@
     <title>Filmania |</title>
   </head>
   <% if user_signed_in? %>
-    <body style="background-image: url(<%= asset_path( @chosen_list.background ) %>);">
+    <body style="background-image: url(<%= asset_path(@chosen_list.background) %>.jpg);">
   <% else %>
    <body>
   <% end %>
