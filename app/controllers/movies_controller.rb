@@ -31,6 +31,7 @@ before_action :authenticate_user!
         @film.release_date = @movie.release_date
         @film.original_language = @movie.original_language
         @film.tagline = @movie.tagline
+        @film.poster_p = @movie.backdrop_path
         @film.vote_avarage = @movie.vote_average
 
         if @film.save
