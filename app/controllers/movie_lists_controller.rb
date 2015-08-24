@@ -1,6 +1,6 @@
 class MovieListsController < ApplicationController
 
-	layout "application"
+	layout false
 
 	def index
 
@@ -23,6 +23,9 @@ class MovieListsController < ApplicationController
 			@movies = @chosen_list.movie_lists
 			@username = @user.username
 
+		end
+		if !user_signed_in? & !params[:username]
+			render('welcome')
 		end
 
 

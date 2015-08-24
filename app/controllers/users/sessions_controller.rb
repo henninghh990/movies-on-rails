@@ -1,6 +1,10 @@
 class Users::SessionsController < Devise::SessionsController
-# before_filter :configure_sign_in_params, only: [:create]
+ before_filter :configure_sign_in_params, only: [:create]
 
+def configure_sign_in_params
+    devise_parameter_sanitizer.for(:sign_in) << :username
+  
+end
   # GET /resource/sign_in
   # def new
   #   super
