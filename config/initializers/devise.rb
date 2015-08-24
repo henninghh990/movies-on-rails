@@ -6,7 +6,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` on Rails 4+ applications as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '93c2b79c7ceac48d8272bbf77f16aa91ab89fda95cae91fa50fac8a36e8a87c38fbc45b24a9d3570c7456e7910e9604cb1fd02944593ff0fecfda093ce2a1d4d'
+  config.secret_key = '9f86003f5997461c8aac6d1cd8d21ed50c7a2f0bcfbbfbd87bdb1952f67fc093b8c4fdec443665bb357d85a3e3d751b3c84b2928c98a94dc561bdb00aa75e96e'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -43,12 +43,12 @@ Devise.setup do |config|
   # Configure which authentication keys should be case-insensitive.
   # These keys will be downcased upon creating or modifying a user and when used
   # to authenticate or find a user. Default is :email.
-  config.case_insensitive_keys = [:email]
+  config.case_insensitive_keys = [:email, :username]
 
   # Configure which authentication keys should have whitespace stripped.
   # These keys will have whitespace before and after removed upon creating or
   # modifying a user and when used to authenticate or find a user. Default is :email.
-  config.strip_whitespace_keys = [:email]
+  config.strip_whitespace_keys = [:email, :username]
 
   # Tell if authentication through request.params is enabled. True by default.
   # It can be set to an array that will enable params authentication only for the
@@ -231,6 +231,7 @@ Devise.setup do |config|
 
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :get
+
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
@@ -258,7 +259,4 @@ Devise.setup do |config|
   # When using OmniAuth, Devise cannot automatically set OmniAuth path,
   # so you need to do it manually. For the users scope, it would be:
   # config.omniauth_path_prefix = '/my_engine/users/auth'
-
-  # Not the recommended way to do it, but for development purposes it's OK
-  config.secret_key = '9f86003f5997461c8aac6d1cd8d21ed50c7a2f0bcfbbfbd87bdb1952f67fc093b8c4fdec443665bb357d85a3e3d751b3c84b2928c98a94dc561bdb00aa75e96e'
 end
