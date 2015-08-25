@@ -27,15 +27,16 @@ class MovieListsController < ApplicationController
 				@chosen_list = @user.lists.first
 				@movies = @chosen_list.movie_lists
 				@username = @user.username
+				if params[:list]
+					@chosen_list = List.find(params[:list])
+					@movies = @chosen_list.movie_lists
+					@username = @user.username
+
+				end
 			end
 			
 		end
-		if params[:list]
-			@chosen_list = List.find(params[:list])
-			@movies = @chosen_list.movie_lists
-			@username = @user.username
-
-		end
+		
 		if !user_signed_in? & !params[:username]
 			render('welcome')
 		end
