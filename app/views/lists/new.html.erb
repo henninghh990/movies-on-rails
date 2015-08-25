@@ -1,13 +1,14 @@
-<%= link_to("<< Back to Lists", {:action => 'index'}, :class => 'back-link') %>
 
-<div clsas="lists new">
+
+<div class="well">
+	<%= link_to("<span class='glyphicon glyphicon-arrow-left'></span> Back to lists".html_safe, {:action => 'index'}, :class => 'btn btn-default') %>
 	<h2>Create List</h2>
 
 	<%= form_for(:list, :url => {:action => 'create'}) do |f| %>
 
 		<%= render(:partial => "form", :locals => {:f => f}) %>
 		<div class="form-buttons">
-			<%= submit_tag("Create List") %>
+			<%= submit_tag("Create List", class: 'btn btn-default') %>
 		</div>
 
 	<% end %>

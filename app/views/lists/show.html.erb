@@ -1,8 +1,9 @@
 
 
-<%= link_to("<< Back to Lists", {:action => 'index'}, :class => 'back-link') %>
 
-<div class="lists show">
+
+<div class="well">
+	<%= link_to("<span class='glyphicon glyphicon-arrow-left'></span> Back to lists".html_safe, {:action => 'index'}, :class => 'btn btn-default') %>
 	<h2>Show List</h2>
 
 	<table summary="List detail view">
