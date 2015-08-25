@@ -7,9 +7,25 @@ before_action :authenticate_user!
   end
 
   def search
-  	TMDB::API.api_key = "ce57411404742be5f5ae111fb347f20e"
-  	@movies = TMDB::Movie.search(params[:q])
-  	@lists = current_user.lists
+    if params[:q]
+      if params[:q].blank?
+        flash[:notice] = "No search parameters detected."
+        flash[:class] = "alert-danger"
+        render('index')
+
+      else
+      	TMDB::API.api_key = "ce57411404742be5f5ae111fb347f20e"
+        @movies = TMDB::Movie.search(params[:q])
+        @lists = current_user.lists
+      end
+    end
+
+    if params[:date_from]
+      @movies = TMDB::Movie.advanced_search('release_date.gte' => params[:date_from],
+                            'release_date.lte' => params[:date_to], 'vote_average.gte' => params[:ex1], 'vote_average.lte' => params[:ex2])
+        @lists = current_user.lists
+    end
+
   end
 
   def create
@@ -44,9 +60,11 @@ before_action :authenticate_user!
               new_movielist.save
             end
             flash[:notice] = "New movie saved"
+            flash[:class] = "alert-success"
             redirect_to(:action => 'index')
           else
             flash[:notice] = "Could not find list"
+            flash[:class] = "alert-danger"
             redirect_to(:action => 'index')
           end
           
@@ -65,11 +83,13 @@ before_action :authenticate_user!
               new_movielist.save
         end
         flash[:notice] = "New exsisted, but was movie saved"
+        flash[:class] = "alert-success"
         redirect_to(:action => 'index')
       end
     end
     else
       flash[:notice] = "request post failed."
+      flash[:class] = "alert-danger"
       redirect_to(:action => 'index')
     end
   end

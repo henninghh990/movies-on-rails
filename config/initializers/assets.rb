@@ -6,6 +6,8 @@ Rails.application.config.assets.precompile += %w( public.js )
 Rails.application.config.assets.precompile += %w( bootstrap.js )
 Rails.application.config.assets.precompile += %w( dropdown.js )
 Rails.application.config.assets.precompile += %w( dropdown.css )
+Rails.application.config.assets.precompile += %w( slider.js )
+Rails.application.config.assets.precompile += %w( slider.css )
 
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path

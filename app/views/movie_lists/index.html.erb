@@ -10,11 +10,10 @@
      <%= javascript_include_tag('public') %>
     <title>Filmania |</title>
   </head>
-  <% if user_signed_in? %>
+  
     <body style="background-image: url(<%= asset_path(@chosen_list.background + ".jpg") %>);">
-  <% else %>
-   <body>
-  <% end %>
+  
+   
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="top-container">
         <div class="top-innhold">
@@ -37,10 +36,10 @@
     </nav>
     <div class="navcontainer">
         <div class="row" >
-          <div class="col-md-4">
-          <h1 style="font-size: 50px;color:white;font-weight:300;z-index:-10">Filmania</h1>
+          <div class="col-xs-4">
+          <h1 class="h1title">Filmania</h1>
           </div>
-          <div class="col-md-4 text-center">
+          <div class="col-xs-4 text-center">
           <div class='link-menu'>
                 <a href="#" class='menyknapp settings pull-right' data-jq-dropdown="#jq-dropdown-1"></a>
                 <%= link_to("", {:controller => 'movies', :action => 'index'}, class: 'menyknapp movie-reel pull-right') %>
@@ -48,8 +47,8 @@
                 
               </div>
           </div>
-          <div class="col-md-4">
-            <h1 class="pull-right" style="font-size: 50px;color:white;font-weight:300;">
+          <div class="col-xs-4">
+            <h1 class="pull-right h1title">
               <%=  @username  %>
               
             </h1>
@@ -81,7 +80,7 @@
           <% if plakat.blank? %>
               <% plakat = asset_path(noposter.png) %>
           <% end %>
-          <div class="col-md-3 shadow"  style='height:255px;width:170px;margin:10px;padding:0px'>
+          <div class="col-xs-3 shadow"  style='height:255px;width:170px;margin:10px;padding:0px'>
             <div class="grow">
               
               <a href='#' data-toggle="modal" data-target="#exampleModal" data-film="<%= movieL.movie.title %>" data-bilde="http://image.tmdb.org/t/p/w342<%= plakat %>" data-id="<%= movieL.movie.id %>" data-rating="<%= movieL.movie.vote_avarage %>" data-runtime="<%= movieL.movie.runtime %>" data-backdrop="<%= movieL.movie.poster_p %>" data-release="<%= date %>" data-overview="<%= movieL.movie.overview %>"><img src="http://image.tmdb.org/t/p/w185/<%= plakat %>" width="170px"></a>

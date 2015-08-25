@@ -1,28 +1,25 @@
-<% if !flash[:notice].blank? %>
-	<div class="notice">
-		<%= flash[:notice] %>
-	</div>
-<% end %>
 
-<div class="movies search">
+<div class="well">
   <h2>Movie search results</h2>
 
   <%= link_to("New search", {:action => 'index'}, :class => 'btn btn-default') %>
 
   <div class="row" summary="List list" style='margin-top:10px;'>
-    <% @movies.each do |movie| %>
-    <% plakat = movie.poster('w185') %>
-      <% if plakat.blank? %>
-          <% plakat = asset_path('noposter.png') %>
-      <% end %>
-      <div class="col-md-3"  style='height:255px;width:170px;margin:10px'>
-        <div class="box overlay red">
-          <img src="<%= plakat %>" width="170px">
-          <a href='#' type="button" class='link' data-toggle="modal" data-target="#exampleModal" data-film="<%= movie.title %>" data-bilde="<%= plakat %>" data-id="<%= movie.id %>" data-rating="<%= movie.vote_average %>" data-release="<%= movie.release_date %>"><img src="<%= asset_path('plus.png') %>"></a>
+   
+      <% @movies.each do |movie| %>
+      <% plakat = movie.poster('w185') %>
+        <% if plakat.nil? %>
+            <% plakat = asset_path('noposter.png') %>
+        <% end %>
+        <div class="col-md-3"  style='height:255px;width:170px;margin:10px'>
+          <div class="box overlay red">
+            <img src="<%= plakat %>" width="170px">
+            <a href='#' type="button" class='link' data-toggle="modal" data-target="#exampleModal" data-film="<%= movie.title %>" data-bilde="<%= plakat %>" data-id="<%= movie.id %>" data-rating="<%= movie.vote_average %>" data-release="<%= movie.release_date %>"><img src="<%= asset_path('plus.png') %>"></a>
 
+          </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+
   </div>
 </div>
 

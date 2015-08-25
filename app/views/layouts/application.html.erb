@@ -38,7 +38,7 @@
     <div class="navcontainer">
         <div class="row" >
           <div class="col-md-4">
-          <h1 style="font-size: 50px;color:white;font-weight:300;z-index:-10">Filmania</h1>
+          <h1 class='h1title'>Filmania</h1>
           </div>
           <div class="col-md-4 text-center">
           <div class='link-menu'>
@@ -49,7 +49,7 @@
               </div>
           </div>
           <div class="col-md-4">
-            <h1 class="pull-right" style="font-size: 50px;color:white;font-weight:300;">
+            <h1 class="pull-right h1title">
               <%=  @username  %>
               
             </h1>
@@ -60,10 +60,11 @@
     <div class="container da">
 		<div id="main">
 			<% if !flash[:notice].blank? %>
-				<div class="alert alert-success">
-					<%= flash[:notice] %>
-				</div>
-			<% end %>
+        <div class="alert <%= flash[:class] %> alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
 			<div id="content">
 
 				<!-- before yield -->

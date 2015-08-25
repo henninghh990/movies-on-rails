@@ -9,9 +9,17 @@ html {
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
+.h1title{
+  color:white;
+  font-weight:300;
+  font-size: 50px;
+}
 .film-tekst{
   font-size:12pt;
   color:white
+}
+#ex1Slider .slider-selection {
+  background: #BABABA;
 }
 .overview{
   font-size: 10pt;
@@ -378,11 +386,17 @@ th {
     border: 1px solid #ddd !important;
   }
 }
+@media screen and (max-device-width: 480px){
+    img{
+        max-width:100%;
+        height:auto;
+    }
+}
 @font-face {
   font-family: 'Glyphicons Halflings';
 
-  src: url('../fonts/glyphicons-halflings-regular.eot');
-  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+  src: url('/assets/glyphicons-halflings-regular.eot');
+  src: url('/assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/assets/glyphicons-halflings-regular.woff2') format('woff2'), url('/assets/glyphicons-halflings-regular.woff') format('woff'), url('/assets/glyphicons-halflings-regular.ttf') format('truetype'), url('/assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 .glyphicon {
   position: relative;
@@ -4507,6 +4521,15 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   line-height: 20px;
 }
 @media (max-width: 767px) {
+  .h1title{
+    font-size:30px;
+  }
+  .link-menu{
+  margin-top:30px
+  }
+  .top-innhold{
+  width:100%;
+  }
   .navbar-nav .open .dropdown-menu {
     position: static;
     float: none;
@@ -6176,6 +6199,7 @@ button.close {
   .modal-lg {
     width: 1000px;
   }
+  
 }
 .tooltip {
   position: absolute;
@@ -6622,6 +6646,7 @@ button.close {
   text-shadow: none;
 }
 @media screen and (min-width: 768px) {
+
   .carousel-control .glyphicon-chevron-left,
   .carousel-control .glyphicon-chevron-right,
   .carousel-control .icon-prev,
@@ -6786,6 +6811,10 @@ button.close {
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
+.h1title{
+    font-size:40px;
+    float:left !important;
+  }
   .visible-sm {
     display: block !important;
   }

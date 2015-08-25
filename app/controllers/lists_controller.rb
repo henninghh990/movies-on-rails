@@ -21,6 +21,7 @@ class ListsController < ApplicationController
     @list = current_user.lists.build(list_params)
     if @list.save
       flash[:notice] = "List created successfully."
+      flash[:class] = "alert-success"
       redirect_to(:action => 'index')
     else
       render('new')
@@ -35,6 +36,7 @@ class ListsController < ApplicationController
     @list = List.find(params[:id])
     if @list.update_attributes(list_params)
       flash[:notice] = "List updated successfully."
+      flash[:class] = "alert-success"
       redirect_to(:action => 'show', :id => @list.id)
     else
       render('edit')
@@ -48,6 +50,7 @@ class ListsController < ApplicationController
   def destroy
     list = List.find(params[:id]).destroy
     flash[:notice] = "List '#{list.name}' deleted successfully."
+    flash[:class] = "alert-success"
     redirect_to(:action => 'index')
   end
 

@@ -10,6 +10,7 @@ class MovieListsController < ApplicationController
 			@all_lists = current_user.lists
 			if @all_lists.blank?
 				flash[:notice] = "You have no lists yet."
+				flash[:class] = "alert-info"
 				redirect_to(:action => 'welcome')
 			else
 				@chosen_list = current_user.lists.first
@@ -21,6 +22,7 @@ class MovieListsController < ApplicationController
 			@user = User.find_by_username(params[:username])
 			if @user.nil?
 				flash[:notice] = "No such user."
+				flash[:class] = "alert-info"
 				redirect_to(:action => 'welcome')
 			else
 				@all_lists = @user.lists
@@ -47,6 +49,7 @@ class MovieListsController < ApplicationController
 	def destroy
 	    movie_list = MovieList.find(params[:id]).destroy
 	    flash[:notice] = "Movie deleted successfully."
+	    flash[:class] = "alert-info"
 	    redirect_to(:controller => 'lists', :action => 'index')
   end
 

@@ -37,7 +37,7 @@
     <div class="navcontainer">
         <div class="row" >
           <div class="col-md-4">
-          <h1 style="font-size: 50px;color:white;font-weight:300;z-index:-10">Filmania</h1>
+          <h1 class="h1title">Filmania</h1>
           </div>
           <div class="col-md-4 text-center">
           <% if user_signed_in? %>
@@ -53,7 +53,7 @@
           </div>
           <div class="col-md-4">
           <% if user_signed_in? %>
-            <h1 style="font-size: 50px;color:white;font-weight:300;z-index:-10"><%= @username %></h1>
+            <h1 class="h1title"><%= @username %></h1>
           <% end %>
 
           </div>
