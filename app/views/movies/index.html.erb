@@ -20,10 +20,11 @@
 
 			<%= form_tag(:action => 'search') do %>
 			<div class="form-group">
-				<%= label_tag(:ReleaseDate) %>
+				<%= label_tag(:Release_date) %>
 				<div class='form-inline'>
-	  			<%= text_field_tag(:date_from, "",:class => 'form-control inline') %>
-	  			<%= text_field_tag(:date_to, "",:class => 'form-control') %>
+	  			<%= date_select(:date_from, "fra") %>
+	  			<%= date_select(:date_to, "til") %>
+
 	  		</div>
 	  		<div class="form-group">
 				<%= label_tag(:Rating) %>

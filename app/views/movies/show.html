@@ -8,6 +8,15 @@
 	</div>
 <div class="col-lg-8">
 <h2><%= @movie.title %></h2>
+<div class="row" style="margin:10px">
+  <div class="btn-group" role="group" aria-label="...">
+    <% if user_signed_in? %>
+  <a href='#' type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-default">Add Movie</button>
+    <% end %>
+  <a href="http://www.imdb.com/title/<%= @movie.imdb_id %>" target="_blank" type="button" class="btn btn-default">IMDB</a>
+  <a href="<%= @movie.homepage %>" type="button" target="_blank" class="btn btn-default">Homepage</a>
+</div>
+  </div>
 	<div class="row">
 		<div class="col-xs-4">
 			<div class="form-group">
@@ -38,10 +47,20 @@
 	</div>
 	<div class="form-group">
 				<%= label_tag(:genres) %>
-				<ul>
-	
-					<li><%= @movie.genres %></li>
+				<% derp = @movie.genres.to_s.split('"') %>
+				<% i = 0 %>
+				<% num = 5 %>
+				<% while i < num  do %>
+   				<% derp.delete_at(i)  %>
+   				<% i +=1 %>
+				<% end %>
 		
+				
+				<ul>
+				<% derp.each do |derps| %>
+					<li><%= derps %></li>
+					<% next %>
+				<% end %>
 				</ul>
 	</div>
 
@@ -51,3 +70,67 @@
 </div>
 </div>
 </div>
+<% if user_signed_in? %>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            
+            <div class="modal-body">
+                <div class='row'>
+                  <div class='col-md-6'>
+                    <img src='http://image.tmdb.org/t/p/w185<%= @movie.poster_path %>' class='picture'>
+                  </div>
+                  <div class='col-md-6 text-left'>
+                    <div class="form-group">
+                <label for="title">Title</label>
+                <p class='title'><%= @movie.title %></p>
+             </div>
+             <div class="form-group">
+                <label for="release">Release date</label>
+                <p class='release'><%= @movie.release_date %></p>
+             </div>
+             <div class="form-group">
+                <label for="rating">Rating</label>
+                <p class='rating'><%= @movie.vote_average %></p>
+             </div>
+    
+             
+                  </div>
+
+                </div>
+                <hr>
+                <h4>Choose a list</h4>
+                <table class="table table-hover" summary="List list">
+                  <tr class="header">
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Choose</th>
+                  </tr>
+                  <%= form_tag(action: 'create', method: 'post') do %>
+                    <%= hidden_field_tag("id", @movie.id, :class =>'hidden_id') %>
+                        <% @lists.each do |list| %>
+                          <tr>
+                            <td><%= list.id %></td>
+                            <td><%= list.name %></td>
+                            <td><%= list.category %></td>
+                            <td><%= check_box_tag 'lists[]', list.id %></td>
+                          </tr>
+                        <% end %>
+                      </table>
+                      
+                    </div>
+                    <div class="modal-footer">
+                      <%= submit_tag("Add movie", :class => 'btn btn-default') %>
+                  <% end %>
+              
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    
+
+                  
+            </div>
+        </div>
+    </div>
+</div>
+<% end %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script

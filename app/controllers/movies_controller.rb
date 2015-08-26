@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
 
 layout "template"
-before_action :authenticate_user!
+before_action :authenticate_user!, except: [:show]
   def index
   	
   end
@@ -9,6 +9,9 @@ before_action :authenticate_user!
   def show
     TMDB::API.api_key = "ce57411404742be5f5ae111fb347f20e"
     @movie = TMDB::Movie.id(params[:id])
+    if user_signed_in? 
+      @lists = current_user.lists
+    end
 
   end
 
@@ -23,13 +26,28 @@ before_action :authenticate_user!
       	TMDB::API.api_key = "ce57411404742be5f5ae111fb347f20e"
         @movies = TMDB::Movie.search(params[:q])
         @lists = current_user.lists
+        if @movies.nil?
+          flash[:notice] = "No movies matches your search"
+          flash[:class] = "alert-warning"
+          redirect_to(:action => 'index')
+        end
+
       end
     end
 
     if params[:date_from]
-      @movies = TMDB::Movie.advanced_search('release_date.gte' => params[:date_from],
-                            'release_date.lte' => params[:date_to], 'vote_average.gte' => params[:ex1], 'vote_average.lte' => params[:ex2])
-        @lists = current_user.lists
+      (params[:date_from])? date = params[:date_from]: date = DateTime.now 
+      date_from = date.to_a.sort.collect{|c| c[1]}.join("-")
+      (params[:date_to])? date = params[:date_to]: date = DateTime.now 
+      date_to = date.to_a.sort.collect{|c| c[1]}.join("-")
+      @movies = TMDB::Movie.advanced_search('release_date.gte' => date_from,
+                            'release_date.lte' => date_to, 'vote_average.gte' => params[:ex1], 'vote_average.lte' => params[:ex2])
+      @lists = current_user.lists
+      if @movies.blank?
+          flash[:notice] = "No movies matches your search"
+          flash[:class] = "alert-warning"
+          redirect_to(:action => 'index')
+        end
     end
 
   end
