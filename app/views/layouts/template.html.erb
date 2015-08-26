@@ -11,7 +11,12 @@
 
 	  <title>Filmania |</title>
 	</head>
+  <% if @background %>
+  <body style='background-image:url(<%= @background%>)'>
+  <% else %>
   <body>
+  <% end %>
+  
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="top-container">
         <div class="top-innhold">
