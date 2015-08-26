@@ -6,6 +6,12 @@ before_action :authenticate_user!
   	
   end
 
+  def show
+    TMDB::API.api_key = "ce57411404742be5f5ae111fb347f20e"
+    @movie = TMDB::Movie.id(params[:id])
+
+  end
+
   def search
     if params[:q]
       if params[:q].blank?

@@ -1,0 +1,53 @@
+
+<div class="well">
+	<div class="row">
+		<div class="col-lg-4">
+			<h2>Movie</h2>
+
+			<img src="http://image.tmdb.org/t/p/w342<%= @movie.poster_path %>">
+	</div>
+<div class="col-lg-8">
+<h2><%= @movie.title %></h2>
+	<div class="row">
+		<div class="col-xs-4">
+			<div class="form-group">
+				<%= label_tag(:Release_date) %>
+				<p><%= @movie.release_date %></p>
+			</div>
+		</div>
+		<div class="col-xs-4">
+			<div class="form-group">
+				<%= label_tag(:Vote_average) %>
+				<p><%= @movie.vote_average %> (<%=@movie.vote_count%>) </p>
+			</div>
+		</div>
+		<div class="col-xs-4">
+			<div class="form-group">
+				<%= label_tag(:Runtime) %>
+				<p><%= @movie.runtime %></p>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+				<%= label_tag(:tagline) %>
+				<p><%= @movie.tagline %></p>
+	</div>
+	<div class="form-group">
+				<%= label_tag(:Overview) %>
+				<p><%= @movie.overview %></p>
+	</div>
+	<div class="form-group">
+				<%= label_tag(:genres) %>
+				<ul>
+	
+					<li><%= @movie.genres %></li>
+		
+				</ul>
+	</div>
+
+
+
+			
+</div>
+</div>
+</div>
