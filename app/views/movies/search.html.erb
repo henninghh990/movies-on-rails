@@ -1,10 +1,57 @@
 
 <div class="well">
-  <h2>Movie search results</h2>
 
-  <%= link_to("New search", {:action => 'index'}, :class => 'btn btn-default') %>
+  <div class="row">
+    <div class="col-md-6">
+      <h2>Seach movies</h2>
 
-  <div class="row" summary="List list" style='margin-top:10px;'>
+      <%= form_tag(:action => 'search') do %>
+      <div class="form-group">
+        <%= label_tag(:Movie_title) %>
+          <%= text_field_tag(:q, "",:class => 'form-control') %>
+        </div>
+
+        <div class="form-group">
+          <%= submit_tag("Search", :name => 'title', :class => 'btn btn-default') %>
+        </div>
+    <% end %>
+  </div>
+<div class="col-md-6">
+  <h2>Advanced search</h2>
+
+      <%= form_tag(:action => 'search') do %>
+      <div class="form-group">
+        <%= label_tag(:Release_date) %>
+        <div class='form-inline'>
+        <%= text_field_tag 'ex2', '5.0', :data => {"slider-id" => 'ex1Slider', "slider-min" => '1900', "slider-max" => Time.now.year, "slider-step" => '1', 'slider-value' => '[2000,2015]'} %>
+
+
+
+        </div>
+        <div class="form-group FORM-INLINE">
+        <%= label_tag(:Rating) %>
+        <div class='form-inline'>
+        <%= text_field_tag 'ex1', '5.1', :data => {"slider-min" => '0.1', "slider-max" => '9.9', "slider-step" => '0.1', 'slider-value' => '[3.0,7.0]'} %>
+      </div>
+          <div>
+            
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <%= submit_tag("Search", :name => 'date', :class => 'btn btn-default') %>
+    <% end %>
+</div>
+</div>
+</div>
+</div>
+<% if !@movies.nil? %>
+<%= @datelol %>
+<%= @rate_from %>
+
+  <h2><%= @search_title %></h2>
+
+  <div class="row" style='margin-top:10px;'>
    
       <% @movies.each do |movie| %>
       <% plakat = movie.poster('w185') %>
@@ -86,6 +133,7 @@
             </div>
         </div>
     </div>
+    <% end %>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>

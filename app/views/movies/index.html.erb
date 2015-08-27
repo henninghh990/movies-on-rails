@@ -1,54 +1,27 @@
 
 <div class="well">
-	<div class="row">
-		<div class="col-md-6">
-			<h2>Seach movies</h2>
+	<h2 style="margin-bottom:30px">Movies in Filmania database <%= link_to("Search", {:action => 'search'}, class: 'btn btn-default pull-right') %></h2>
+	<% @movies.each do |movies| %>
+	
+		<ul class="media-list">
+			<li class="media">
+    			<div class="media-left">
+    				<a href="/movies/show/<%= movies.id %>">
+						<img class="media-object" src="http://image.tmdb.org/t/p/w154<%= movies.poster %>">
+					</a>	
+				</div>
+		<div class="media-body">
+      		<h4 class="media-heading"><%= movies.title %></h4>
+      		<table class="table">
+      			<tr><td>Runtime:</td><td><%= movies.runtime %></td></tr>
+      			<tr><td>Overview:</td><td><%= movies.overview %></td></tr>
+      			<tr><td>Rating:</td><td><%= movies.vote_avarage %></td></tr>
+      		</table>
+    </div>
+  </li>
+</ul>
 
-			<%= form_tag(:action => 'search') do %>
-			<div class="form-group">
-				<%= label_tag(:MovieName) %>
-	  			<%= text_field_tag(:q, "",:class => 'form-control') %>
-	  		</div>
-
-	  		<div class="form-group">
-	  			<%= submit_tag("Search", :class => 'btn btn-default') %>
-	  		</div>
-		<% end %>
-	</div>
-<div class="col-md-6">
-	<h2>Advanced search</h2>
-
-			<%= form_tag(:action => 'search') do %>
-			<div class="form-group">
-				<%= label_tag(:Release_date) %>
-				<div class='form-inline'>
-				<%= text_field_tag 'ex2', '5.0', :data => {"slider-id" => 'ex1Slider', "slider-min" => '1900', "slider-max" => Time.now.year, "slider-step" => '1', 'slider-value' => '[2000,2015]'} %>
-
-
-
-	  		</div>
-	  		<div class="form-group FORM-INLINE">
-				<%= label_tag(:Rating) %>
-				<div class='form-inline'>
-				<%= text_field_tag 'ex1', '5.1', :data => {"slider-min" => '0.1', "slider-max" => '9.9', "slider-step" => '0.1', 'slider-value' => '[3.0,7.0]'} %>
-			</div>
-	  			<div>
-	  				
-	  			</div>
-	  		</div>
-	  		
-	  		<div class="form-group">
-	  			<%= submit_tag("Search", :class => 'btn btn-default') %>
-		<% end %>
-</div>
-</div>
+	<% end %>
 </div>
 
-<script>
-  $('#myButton').on('click', function () {
-    var $btn = $(this).button('loading')
-    // business logic...
-    $btn.button('reset')
-  })
-</script>
 
