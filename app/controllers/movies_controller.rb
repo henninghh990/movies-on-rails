@@ -41,8 +41,8 @@ before_action :authenticate_user!, except: [:show]
       date_from = date.to_a.sort.collect{|c| c[1]}.join("-")
       (params[:date_to])? date = params[:date_to]: date = DateTime.now 
       date_to = date.to_a.sort.collect{|c| c[1]}.join("-")
-      @movies = TMDB::Movie.advanced_search('release_date.gte' => date_from,
-                            'release_date.lte' => date_to, 'vote_average.gte' => params[:ex1], 'vote_average.lte' => params[:ex2])
+      @movies = TMDB::Movie.advanced_search('release_date.gte' => '2003',
+                            'release_date.lte' => '2004')# 'vote_average.gte' => params[:ex1], 'vote_average.lte' => params[:ex2])
       @lists = current_user.lists
       if @movies.blank?
           flash[:notice] = "No movies matches your search"

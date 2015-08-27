@@ -70,7 +70,7 @@
 				<%= yield %>
 				<!-- after yield -->
 			
-			<div id="footer">
+			<div id="footer" style="height:50px">
 			</div>
 		</div>
 	</div>
@@ -81,14 +81,8 @@
   <%= javascript_include_tag :slider %>
   <script>
   $('#ex1').slider({
-  formatter: function(value) {
-    return 'Current value: ' + value;
-  }
 });
   $('#ex2').slider({
-  formatter: function(value) {
-    return 'Current value: ' + value;
-  }
 });
 
   </script>
